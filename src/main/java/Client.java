@@ -13,6 +13,7 @@ public class Client {
         this.socket = socket;
         this.safe = safe;
         this.ip = socket.getRemoteSocketAddress().toString().split(":")[0];
+        System.out.println("Connected\n");
         if (safe) {
             DBManager.select(ip);
         }
@@ -34,8 +35,6 @@ public class Client {
 
         //Use PrintWriter to make the output stream buffered and work with characters (also add println method)
         final PrintWriter writer = new PrintWriter(outputStream, true);
-
-        System.out.println("Connected");
 
 
        Thread readingThread = new Thread(new Runnable() {
