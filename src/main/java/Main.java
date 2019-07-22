@@ -3,7 +3,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Main2 {
+public class Main {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Do you want to connect or listen (c/l): ");
@@ -16,6 +16,7 @@ public class Main2 {
         switch (answer2) {
             case "y":
                 flag = true;
+                DBManager.createDb();
                 break;
             case "n":
                 flag = false;
