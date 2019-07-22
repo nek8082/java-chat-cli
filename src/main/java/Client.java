@@ -13,7 +13,9 @@ public class Client {
         this.socket = socket;
         this.safe = safe;
         this.ip = socket.getRemoteSocketAddress().toString().split(":")[0];
-
+        if (safe) {
+            DBManager.select(ip);
+        }
     }
 
     public void run() throws IOException {
@@ -42,7 +44,6 @@ public class Client {
                 String inputLine = null;
                 try {
                     inputLine = bufferedReader.readLine();
-                    System.out.println("Msg: " + inputLine);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
