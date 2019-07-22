@@ -2,14 +2,14 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Client {
+class Client {
     private Socket socket;
     private String ip;
 
     //safe history flag
     private boolean safe;
 
-    public Client(Socket socket, boolean safe) {
+    Client(Socket socket, boolean safe) {
         this.socket = socket;
         this.safe = safe;
         this.ip = socket.getRemoteSocketAddress().toString().split(":")[0];
@@ -19,10 +19,15 @@ public class Client {
         }
     }
 
-    public void run() throws IOException {
+    void run() {
 
         //Get the input stream (sequence of bytes)
-        InputStream inputStream = socket.getInputStream();
+        InputStream inputStream = null;
+        try {
+            inputStream = socket.getInputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //InputStreamReader takes a byte stream and converts it into a character stream
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -31,7 +36,12 @@ public class Client {
         final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
         //Get the output stream (sequence of bytes)
-        OutputStream outputStream = socket.getOutputStream();
+        OutputStream outputStream = null;
+        try {
+            outputStream = socket.getOutputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //Use PrintWriter to make the output stream buffered and work with characters (also add println method)
         final PrintWriter writer = new PrintWriter(outputStream, true);

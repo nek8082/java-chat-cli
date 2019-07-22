@@ -2,11 +2,11 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.*;
 
-public class DBManager {
+class DBManager {
     private DBManager() {}
 
     private static String dbPath;
-    public static void createDb() {
+    static void createDb() {
         //Create chat database
         File file = new File("chat.db");
         try {
@@ -22,13 +22,14 @@ public class DBManager {
         }
     }
 
-    public static void createTable() {
+    private static void createTable() {
         Connection connection = null;
         Statement statement = null;
         try {
             connection = DriverManager.getConnection("jdbc:sqlite://" + dbPath);
             statement = connection.createStatement();
-            statement.executeUpdate("CREATE TABLE chat (id INTEGER PRIMARY KEY AUTOINCREMENT, ip TEXT, msg TEXT, sent Bool);");
+            statement.executeUpdate("CREATE TABLE chat (id INTEGER PRIMARY KEY AUTOINCREMENT, ip TEXT, msg TEXT," +
+                    " sent Bool);");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -49,13 +50,14 @@ public class DBManager {
         }
     }
 
-    public static synchronized void insert(String ip, String msg, boolean sent) {
+    static synchronized void insert(String ip, String msg, boolean sent) {
         Connection connection = null;
         Statement statement = null;
         try {
             connection = DriverManager.getConnection("jdbc:sqlite://" + dbPath);
             statement = connection.createStatement();
-            statement.executeUpdate("INSERT INTO chat (ip, msg, sent) VALUES (\""+ip+"\", \""+msg+"\",\""+sent+"\");");
+            statement.executeUpdate("INSERT INTO chat (ip, msg, sent) VALUES (\""+ip+"\", \""+msg+"\",\""+
+                    sent+"\");");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -76,7 +78,7 @@ public class DBManager {
         }
     }
 
-    public static void select(String ip) {
+    static void select(String ip) {
         Connection connection = null;
         Statement statement = null;
         try {

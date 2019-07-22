@@ -3,3 +3,4 @@ out
 JavaChatCLI.iml
 target
 chat.db
+src/test
