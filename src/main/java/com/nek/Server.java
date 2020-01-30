@@ -31,8 +31,9 @@ class Server {
 				final OutputStream outputStream = socket.getOutputStream();
 				// Use PrintWriter to make the output stream buffered and work with characters
 				final PrintWriter writer = new PrintWriter(outputStream, true);) {
-			final String ip = socket.getRemoteSocketAddress().toString().split(":")[0];
+			Main.connected.set(true);
 			System.out.println("Connected\n");
+			final String ip = socket.getRemoteSocketAddress().toString().split(":")[0];
 			if (safe) {
 				DBManager.select(ip);
 			}
@@ -59,6 +60,6 @@ class Server {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		System.out.println("Program terminated");
 	}
 }

@@ -2,17 +2,20 @@ package com.nek;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Main {
+	public static AtomicBoolean connected = new AtomicBoolean(false);
+	
 	public static void main(String[] args) throws IOException {
-		Scanner scanner = new Scanner(System.in);
-		String msg1 = "Do you want to connect or listen (c/l): ";
-		String msg2 = "Do you want to safe the chat history or continue from an existing chat history (if there"
+		final Scanner scanner = new Scanner(System.in);
+		final String msg1 = "Do you want to connect or listen (c/l): ";
+		final String msg2 = "Do you want to safe the chat history or continue from an existing chat history (if there"
 				+ " already exists one for the ip) (y/n): ";
-		String errMsg = "Wrong input please try again";
+		final String errMsg = "Wrong input please try again";
 
-		String answer = checkInput(errMsg, "c", "l", msg1, scanner);
-		String answer2 = checkInput(errMsg, "y", "n", msg2, scanner);
+		final String answer = checkInput(errMsg, "c", "l", msg1, scanner);
+		final String answer2 = checkInput(errMsg, "y", "n", msg2, scanner);
 
 		boolean safe = false;
 
@@ -29,20 +32,20 @@ public class Main {
 		switch (answer) {
 		case "c":
 			System.out.print("Enter server ip and press enter: ");
-			String ip = scanner.next();
+			final String ip = scanner.next();
 			System.out.print("Enter server port and press enter: ");
-			int port = scanner.nextInt();
-			Client client = new Client(ip, port, safe);
+			final int port = scanner.nextInt();
+			final Client client = new Client(ip, port, safe);
 			client.run();
 			break;
 		case "l":
 			System.out.print("What port do you want to listen on (0 to 65535): ");
-			int listenerPort = scanner.nextInt();
-			Server server = new Server(listenerPort, safe);
+			final int listenerPort = scanner.nextInt();
+			final Server server = new Server(listenerPort, safe);
 			server.run();
 			break;
 		}
-		
+
 		scanner.close();
 	}
 

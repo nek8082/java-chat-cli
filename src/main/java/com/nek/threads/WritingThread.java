@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 import com.nek.DBManager;
+import com.nek.Main;
 
 public class WritingThread extends Thread {
 	private final PrintWriter writer;
@@ -19,11 +20,18 @@ public class WritingThread extends Thread {
 	@Override
 	public void run() {
 		Scanner scanner = new Scanner(System.in);
-		while (scanner.hasNextLine()) {
+		while (scanner.hasNextLine() && Main.connected.get()) {
 			String msg = scanner.nextLine();
+			if (msg == null) {
+				break;
+			}
 			writer.println(msg);
 			if (safe) {
 				DBManager.insert(ip, msg, false);
+			}
+			if (msg.equals("exit")) {
+				Main.connected.set(false);
+				System.out.println("Disconnected wait till other participant presses enter or terminate program manually");
 			}
 		}
 		scanner.close();

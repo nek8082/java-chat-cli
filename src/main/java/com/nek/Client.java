@@ -36,6 +36,7 @@ class Client {
 				final OutputStream outputStream = socket.getOutputStream();
 				// Use PrintWriter to make the output stream buffered and work with characters
 				final PrintWriter writer = new PrintWriter(outputStream, true);) {
+			Main.connected.set(true);
 			System.out.println("Connected\n");
 			if (safe) {
 				DBManager.select(ip);
@@ -62,6 +63,6 @@ class Client {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		System.out.println("Program terminated");
 	}
 }
