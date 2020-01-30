@@ -1,8 +1,9 @@
+package com.nek;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
 
-class DBManager {
+public class DBManager {
     private DBManager() {}
 
     private static String dbPath;
@@ -50,7 +51,7 @@ class DBManager {
         }
     }
 
-    static synchronized void insert(String ip, String msg, boolean sent) {
+    public static synchronized void insert(String ip, String msg, boolean sent) {
         Connection connection = null;
         Statement statement = null;
         try {

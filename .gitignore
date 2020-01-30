@@ -4,3 +4,8 @@ JavaChatCLI.iml
 target
 chat.db
 src/test
+.classpath
+.project
+.settings/
+log/
+target/
