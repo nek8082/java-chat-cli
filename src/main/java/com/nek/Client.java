@@ -17,13 +17,13 @@ class Client {
 	private final int port;
 	private final boolean safe;
 
-	Client(String ip, int port, boolean safe) {
+	Client(final String ip, final int port, final boolean safe) {
 		this.ip = ip;
 		this.port = port;
 		this.safe = safe;
 	}
 
-	final void run() {
+	void run() {
 
 		try (final Socket socket = new Socket(ip, port);
 				// Get the input stream (sequence of bytes)

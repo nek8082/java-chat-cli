@@ -49,7 +49,7 @@ public class Main {
 		scanner.close();
 	}
 
-	private static String checkInput(String errMsg, String input1, String input2, String msg, Scanner scanner) {
+	private static String checkInput(final String errMsg, final String input1, final String input2, final String msg, final Scanner scanner) {
 		System.out.print(msg);
 		String answer = scanner.next();
 		while (!answer.equals(input1) && !answer.equals(input2)) {

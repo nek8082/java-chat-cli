@@ -12,12 +12,12 @@ class Server {
 	private final int port;
 	private final boolean safe;
 
-	Server(int port, boolean safe) {
+	Server(final int port, final boolean safe) {
 		this.port = port;
 		this.safe = safe;
 	}
 
-	final void run() {
+	void run() {
 		System.out.println("Listening");
 		try (final ServerSocket serverSocket = new ServerSocket(port);
 				final Socket socket = serverSocket.accept();

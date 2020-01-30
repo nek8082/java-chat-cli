@@ -11,7 +11,7 @@ public class ReadingThread extends Thread {
 	private final String ip;
 	private final boolean safe;
 
-	public ReadingThread(BufferedReader bufferedReader, String ip, boolean safe) {
+	public ReadingThread(final BufferedReader bufferedReader, final String ip, final boolean safe) {
 		this.bufferedReader = bufferedReader;
 		this.ip = ip;
 		this.safe = safe;

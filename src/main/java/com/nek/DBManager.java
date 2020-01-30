@@ -9,7 +9,7 @@ public class DBManager {
     private static String dbPath;
     static void createDb() {
         //Create chat database
-        File file = new File("chat.db");
+        final File file = new File("chat.db");
         try {
             dbPath = file.getAbsolutePath();
             if (file.createNewFile()) {
@@ -79,7 +79,7 @@ public class DBManager {
         }
     }
 
-    static void select(String ip) {
+    static void select(final String ip) {
         Connection connection = null;
         Statement statement = null;
         try {

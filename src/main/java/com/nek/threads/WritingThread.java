@@ -11,7 +11,7 @@ public class WritingThread extends Thread {
 	private final String ip;
 	private final boolean safe;
 
-	public WritingThread(PrintWriter writer, String ip, boolean safe) {
+	public WritingThread(final PrintWriter writer, final String ip, final boolean safe) {
 		this.writer = writer;
 		this.ip = ip;
 		this.safe = safe;
