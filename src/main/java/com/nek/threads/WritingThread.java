@@ -19,7 +19,7 @@ public class WritingThread extends Thread {
 	
 	@Override
 	public void run() {
-		Scanner scanner = new Scanner(System.in);
+		final Scanner scanner = new Scanner(System.in);
 		while (scanner.hasNextLine() && Main.connected.get()) {
 			String msg = scanner.nextLine();
 			if (msg == null) {

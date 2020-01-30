@@ -23,7 +23,7 @@ class Client {
 		this.safe = safe;
 	}
 
-	void run() {
+	final void run() {
 
 		try (final Socket socket = new Socket(ip, port);
 				// Get the input stream (sequence of bytes)

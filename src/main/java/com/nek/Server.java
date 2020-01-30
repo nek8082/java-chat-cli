@@ -17,7 +17,7 @@ class Server {
 		this.safe = safe;
 	}
 
-	void run() {
+	final void run() {
 		System.out.println("Listening");
 		try (final ServerSocket serverSocket = new ServerSocket(port);
 				final Socket socket = serverSocket.accept();
